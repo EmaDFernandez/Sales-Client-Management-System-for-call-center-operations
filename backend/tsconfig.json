@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    // File Layout: dónde está nuestro código y dónde se genera el compilado
+    "rootDir": "./src",
+    "outDir": "./dist",
+    // Entorno: le decimos a TypeScript que esto corre en Node, no en el navegador
+    "module": "commonjs",
+    "target": "ES2020",
+    "types": [
+      "node"
+    ],
+    // Permite importar librerías de Node/Express con sintaxis moderna (import en vez de require)
+    "esModuleInterop": true,
+    // Verificaciones estrictas: la buena práctica más importante del archivo
+    "strict": true,
+    // Acelera la compilación, no revisa tipos dentro de node_modules
+    "skipLibCheck": true,
+    // Evita bugs por diferencias de mayúsculas/minúsculas entre sistemas operativos
+    "forceConsistentCasingInFileNames": true
+  }
+}
