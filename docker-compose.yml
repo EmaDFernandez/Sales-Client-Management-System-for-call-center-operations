@@ -1,0 +1,28 @@
+# docker-compose.yml
+# This file describes the local development database as a Docker service.
+# Anyone who clones this repo can run "docker compose up" and get the exact same database.
+services:
+  db_sales:
+    # Use PostgreSQL version 16 specifically, to avoid unexpected breaking changes
+    # from future versions (the same issue we hit earlier with TypeScript 7).
+    image: postgres:16
+
+    # Credentials and database name the Postgres image will use to initialize itself.
+    environment:
+      POSTGRES_USER: user_sales
+      POSTGRES_PASSWORD: password_sales
+      POSTGRES_DB: db_sales
+
+    # Expose Postgres's default port (5432) from the container to your Windows machine,
+    # so the backend (running outside Docker) can connect to it.
+    ports:
+      - "5432:5432"
+
+    # Persist the actual database files outside the container,
+    # so data survives even if the container is removed or recreated.
+    volumes:
+      - db_sales_data:/var/lib/postgresql/data
+
+# Named volumes must be declared at the top level too.
+volumes:
+  db_sales_data:
